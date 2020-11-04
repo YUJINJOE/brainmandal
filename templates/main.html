@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+
+        <title>Hello, world!</title>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+
+        <style>
+            table {
+                border-collapse: collapse;
+                font-family: Calibri, sans-serif;
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+
+            colgroup, tbody {
+                border: solid medium;
+            }
+
+            td {
+                border: solid thin;
+                height: 10em;
+                width: 10em;
+                text-align: center;
+                padding: 0;
+            }
+
+            div.wrap {
+                margin: 30px;
+            }
+
+            textarea {
+                height: 70%;
+                width: 70%;
+                outline: none;
+                border: none;
+                text-align: center;
+                caret-color: darkorange;
+                margin: 2px;
+                vertical-align: middle;
+                line-height: 20px;
+                resize: none;
+                justify-content: center;
+                font-weight: bold;
+                background-color: transparent;
+            }
+
+            td.center {
+                border: solid medium;
+                border-color: dimgray;
+                background-color: gainsboro;
+            }
+
+        </style>
+
+        <script>
+            function saveButtonClicked() {
+
+            }
+
+            function resetButtonClicked() {
+                $('textarea').val('');
+            }
+        </script>
+
+    </head>
+    <body>
+
+        <div class="wrap">
+            <h1>MANDAL YOUR BRAIN 👊</h1>
+            <h5>Press
+                <button type="button" class="btn btn-secondary">TAP</button>
+                to move on!
+            </h5>
+
+            <table>
+                <colgroup>
+                    <col>
+                    <col>
+                    <col>
+                <colgroup>
+                    <col>
+                    <col>
+                    <col>
+                <colgroup>
+                    <col>
+                    <col>
+                    <col>
+                <tbody id="mandal-tbody">
+                <tr>
+                    <td><textarea type="text" tabindex="2"></textarea></td>
+                    <td><textarea type="text" tabindex="3"></textarea></td>
+                    <td><textarea type="text" tabindex="4"></textarea></td>
+                </tr>
+                <tr>
+                    <td><textarea type="text" tabindex="5"></textarea></td>
+                    <td class="center"><textarea type="text" autofocus tabindex="1"></textarea></td>
+                    <td><textarea type="text" tabindex="6"></textarea></td>
+                </tr>
+                <tr>
+                    <td><textarea type="text" tabindex="7"></textarea></td>
+                    <td><textarea type="text" tabindex="8"></textarea></td>
+                    <td><textarea type="text" tabindex="9"></textarea></td>
+                </tr>
+            </table>
+
+            <div style="width: 100%">
+                <button type="button" class="btn btn-warning" style="position: relative; left: 0" onclick="resetButtonClicked()">RESET</button>
+                <button type="button" class="btn btn-success" style="position: relative; right: 0" onclick="saveButtonClicked()">SAVE</button>
+            </div>
+
+            <p></p>
+            <h6 style="margin-top: 100px">2020.10.28 이게 별게 아닌거 같지만 3시간
+                <del> 4주</del>
+                걸렸습니다
+            </h6>
+        </div>
+    </body>
+</html>
