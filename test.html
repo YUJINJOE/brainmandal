@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+
+        <title>Hello, world!</title>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+
+        <style>
+            table {
+                border-collapse: collapse;
+                font-family: Calibri, sans-serif;
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+
+            colgroup, tbody {
+                border: solid medium;
+            }
+
+            td {
+                border: solid thin;
+                height: 6.5em;
+                width: 6.5em;
+                text-align: center;
+                padding: 0;
+            }
+
+            div.wrap {
+                margin: 30px;
+            }
+
+            textarea {
+                display: inline-block;
+
+                vertical-align: middle;
+                margin: 0 auto;
+                height: 80%;
+                width: 80%;
+                outline: none;
+                border: none;
+                text-align: center;
+                caret-color: black;
+                #margin: 2px;
+                #line-height: 20px;
+                resize: none;
+                #justify-content: center;
+                font-weight: bold;
+                background-color: transparent;
+                vertical-align: middle;
+            }
+
+            td.center {
+                border: solid medium;
+                border-color: dimgray;
+                background-color: bisque;
+            }
+
+            td.topic {
+                border: solid medium;
+                border-color: dimgray;
+                background-color: darksalmon;
+            }
+
+            td.near {
+                background-color: peachpuff;
+            }
+
+            td.subtopic {
+                background-color: peachpuff;
+            }
+
+            textarea::placeholder {
+                color: coral;
+                font-weight: lighter;
+                font-style: italic;
+            }
+        </style>
+
+        <script>
+            function saveButtonClicked() {
+                let texts = []
+                $('textarea[type="text"]').each(function () {
+                    texts.push(this.value);
+                })
+                console.log(texts)
+                $.ajax({
+                    type: "POST",
+                    url: "/save",
+                    data: {id: '{{ id }}', texts: texts.toString()},
+                    success: function (response) { // 성공하면
+                        if (response["result"] == "success") {
+                            alert(response['msg']);
+                        }
+                    }
+                })
+            }
+
+            function resetButtonClicked() {
+                $('textarea').val('');
+            }
+
+            //subtopic 에 입력하면 near 에 동기화
+            //function subtopicDidKeyUp(number) {
+            //    let subtopicVal = $('#subtopic' + number).val();
+            //    $('#near' + number).val(subtopicVal);
+            //}
+
+            //near 에 입력하면 subtopic 에 동기화
+            function nearDidKeyUp(number) {
+                let nearVal = $('#near' + number).val();
+                $('#subtopic' + number).val(nearVal);
+            }
+
+        </script>
+
+    </head>
+    <body>
+        <div class="wrap">
+            <h1 class="font-weight-bold"> 만다라트(Mandal-art) </h1>
+            <p class="font-weight-normal">만다라트 기법은 목표를 세우고 그에 대한 아이디어나 생각들 퍼져나가도록 이끌어내는 발상법입니다.<br>
+                비워져있는 칸들이 사고를 더 빠르게 하고, 목표에 집중하며 나의 계획을 한 눈에 파악하는 데 도움이 될 거예요. </p>
+           <p></p>
+            <h5 class="font-weight-bold">작성 방법</h5>
+            <p class="font-weight-normal">
+① 가장 중앙에 최종 목표나 주제를 적습니다. <br>
+② 목표 주변 칸들에 이 달성하기 위한 세부 목표들을 적어주세요.<br>
+③ 퍼뜨려진 각각의 세부 목표를 위한 요소들을 채워나가면 끝! </p>
+
+            무엇에 대해 생각해볼까요?
+            Tab키를 사용해 다음칸으로 빠르게 이동해보세요.
+
+
+
+           <table>
+                <colgroup>
+                    <col>
+                    <col>
+                    <col>
+                <colgroup>
+                    <col>
+                    <col>
+                    <col>
+                <colgroup>
+                    <col>
+                    <col>
+                    <col>
+
+                <tbody id="mandal-tbody">
+                <tr>
+                    <td><textarea type="text" tabindex="10"></textarea></td>
+                    <td><textarea type="text" tabindex="11"></textarea></td>
+                    <td><textarea type="text" tabindex="12"></textarea></td>
+                    <td><textarea type="text" tabindex="18"></textarea></td>
+                    <td><textarea type="text" tabindex="19"></textarea></td>
+                    <td><textarea type="text" tabindex="20"></textarea></td>
+                    <td><textarea type="text" tabindex="26"></textarea></td>
+                    <td><textarea type="text" tabindex="27"></textarea></td>
+                    <td>a9<textarea type="text" tabindex="28"></textarea></td>
+                <tr>
+                    <td>b1<textarea type="text" tabindex="13"></textarea></td>
+                    <td class="subtopic"><textarea type="text" tabindex="" id="subtopic1"></textarea></td>
+                    <td>b3<textarea type="text" tabindex="14"></textarea></td>
+                    <td>b4<textarea type="text" tabindex="21"></textarea></td>
+                    <td class="subtopic"><textarea type="text" tabindex="" id="subtopic2"></textarea></td>
+                    <td>b6<textarea type="text" tabindex="22"></textarea></td>
+                    <td>b7<textarea type="text" tabindex="29"></textarea></td>
+                    <td class="subtopic"><textarea type="text" tabindex="" id="subtopic3"></textarea></td>
+                    <td>b9<textarea type="text" tabindex="30"></textarea></td>
+                <tr>
+                    <td>c1<textarea type="text" tabindex="15"></textarea></td>
+                    <td>c2<textarea type="text" tabindex="16"></textarea></td>
+                    <td>c3<textarea type="text" tabindex="17"></textarea></td>
+                    <td>c4<textarea type="text" tabindex="23"></textarea></td>
+                    <td>c5<textarea type="text" tabindex="24"></textarea></td>
+                    <td>c6<textarea type="text" tabindex="25"></textarea></td>
+                    <td>c7<textarea type="text" tabindex="31"></textarea></td>
+                    <td>c8<textarea type="text" tabindex="32"></textarea></td>
+                    <td>c9<textarea type="text" tabindex="33"></textarea></td>
+
+                <tbody id="mandal-tbody">
+                <tr>
+                    <td>a1<textarea type="text" tabindex="34"></textarea></td>
+                    <td>a2<textarea type="text" tabindex="35"></textarea></td>
+                    <td>a3<textarea type="text" tabindex="36"></textarea></td>
+                    <td class="near"><textarea type="text" tabindex="2" topic="topic" placeholder="소주제1" id="near1"
+                                               onkeyup="nearDidKeyUp(1)"></textarea>
+                    </td>
+                    <td class="near"><textarea type="text" tabindex="3" topic="topic" placeholder="소주제2" id="near2"
+                                               onkeyup="nearDidKeyUp(2)"></textarea>
+                    </td>
+                    <td class="near"><textarea type="text" tabindex="4" topic="topic" placeholder="소주제3" id="near3"
+                                               onkeyup="nearDidKeyUp(3)"></textarea>
+                    </td>
+                    <td>a7<textarea type="text" tabindex="42"></textarea></td>
+                    <td>a8<textarea type="text" tabindex="43"></textarea></td>
+                    <td>a9<textarea type="text" tabindex="44"></textarea></td>
+                <tr>
+                    <td>b1<textarea type="text" tabindex="37"></textarea></td>
+                    <td class="subtopic"><textarea type="text" tabindex="" id="subtopic4"></textarea></td>
+                    <td>b3<textarea type="text" tabindex="38"></textarea></td>
+                    <td class="near"><textarea type="text" tabindex="5" topic="topic" placeholder="소주제4" id="near4"
+                                               onkeyup="nearDidKeyUp(4)"></textarea>
+                    </td>
+                    <td class="topic"><textarea type="text" autofocus tabindex="1" topic="topic"
+                                                placeholder="주제"></textarea></td>
+                    <td class="near"><textarea type="text" tabindex="6" topic="topic" placeholder="소주제5" id="near5"
+                                               onkeyup="nearDidKeyUp(5)"></textarea>
+                    </td>
+                    <td>b7<textarea type="text" tabindex="45"></textarea></td>
+                    <td class="subtopic"><textarea type="text" tabindex="" id="subtopic5"></textarea></td>
+                    <td>b9<textarea type="text" tabindex="46"></textarea></td>
+                <tr>
+                    <td>c1<textarea type="text" tabindex="39"></textarea></td>
+                    <td>c2<textarea type="text" tabindex="40"></textarea></td>
+                    <td>c3<textarea type="text" tabindex="41"></textarea></td>
+                    <td class="near"><textarea type="text" tabindex="7" topic="topic" placeholder="소주제6" id="near6"
+                                               onkeyup="nearDidKeyUp(6)"></textarea>
+                    </td>
+                    <td class="near"><textarea type="text" tabindex="8" topic="topic" placeholder="소주제7" id="near7"
+                                               onkeyup="nearDidKeyUp(7)"></textarea>
+                    </td>
+                    <td class="near"><textarea type="text" tabindex="9" topic="topic" placeholder="소주제8" id="near8"
+                                               onkeyup="nearDidKeyUp(8)"></textarea>
+                    </td>
+                    <td>c7<textarea type="text" tabindex="47"></textarea></td>
+                    <td>c8<textarea type="text" tabindex="48"></textarea></td>
+                    <td>c9<textarea type="text" tabindex="49"></textarea></td>
+
+                <tbody id="mandal-tbody">
+                <tr>
+                    <td>a1<textarea type="text" tabindex="50"></textarea></td>
+                    <td>a2<textarea type="text" tabindex="51"></textarea></td>
+                    <td>a3<textarea type="text" tabindex="52"></textarea></td>
+                    <td>a4<textarea type="text" tabindex="58"></textarea></td>
+                    <td>a5<textarea type="text" tabindex="59"></textarea></td>
+                    <td>a6<textarea type="text" tabindex="60"></textarea></td>
+                    <td>a7<textarea type="text" tabindex="66"></textarea></td>
+                    <td>a8<textarea type="text" tabindex="67"></textarea></td>
+                    <td>a9<textarea type="text" tabindex="68"></textarea></td>
+                <tr>
+                    <td>b1<textarea type="text" tabindex="53"></textarea></td>
+                    <td class="subtopic"><textarea type="text" tabindex="" id="subtopic6"></textarea></td>
+                    <td>b3<textarea type="text" tabindex="54"></textarea></td>
+                    <td>b4<textarea type="text" tabindex="61"></textarea></td>
+                    <td class="subtopic"><textarea type="text" tabindex="" id="subtopic7"></textarea></td>
+                    <td>b6<textarea type="text" tabindex="62"></textarea></td>
+                    <td>b7<textarea type="text" tabindex="69"></textarea></td>
+                    <td class="subtopic"><textarea type="text" tabindex="" id="subtopic8"></textarea></td>
+                    <td>b9<textarea type="text" tabindex="70"></textarea></td>
+                <tr>
+                    <td>c1<textarea type="text" tabindex="55"></textarea></td>
+                    <td>c2<textarea type="text" tabindex="56"></textarea></td>
+                    <td>c3<textarea type="text" tabindex="57"></textarea></td>
+                    <td>c4<textarea type="text" tabindex="63"></textarea></td>
+                    <td>c5<textarea type="text" tabindex="64"></textarea></td>
+                    <td>c6<textarea type="text" tabindex="65"></textarea></td>
+                    <td>c7<textarea type="text" tabindex="71"></textarea></td>
+                    <td>c8<textarea type="text" tabindex="72"></textarea></td>
+                    <td>c9<textarea type="text" tabindex="73"></textarea></td>
+            </table>
+
+            <div style="width: 100%">
+                <button type="button" class="btn btn-warning" style="position: relative; left: 0"
+                        onclick="resetButtonClicked()">RESET
+                </button>
+                <button type="button" class="btn btn-success" style="position: relative; right: 0"
+                        onclick="saveButtonClicked()">SAVE
+                </button>
+            </div>
+
+            <p></p>
+            <h6 style="margin-top: 100px">2020.10.28 이게 별게 아닌거 같지만 3시간
+                <del> 4주</del>
+                걸렸습니다
+            </h6>
+        </div>
+    </body>
+</html>
